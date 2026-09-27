@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prime-Tech | Kalitenin Tek Adresi</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #111111;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: auto;
+            min-height: 76px;
+            padding: 0 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            font-weight: 400;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        nav a {
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.25s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -7px;
+            width: 0;
+            height: 2px;
+            background: #111;
+            transition: 0.25s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .admin-link {
+            border: 1px solid #111;
+            padding: 9px 15px;
+            border-radius: 8px;
+        }
+
+        .admin-link:hover {
+            background: #111;
+            color: white;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            padding: 100px 25px;
+
+            background:
+                radial-gradient(circle at top left, #f1f1f1 0, transparent 35%),
+                radial-gradient(circle at bottom right, #eeeeee 0, transparent 35%),
+                #fff;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+        }
+
+        .hero-small {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: clamp(50px, 8vw, 100px);
+            line-height: 0.95;
+            letter-spacing: -6px;
+            font-weight: 900;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 span {
+            display: block;
+        }
+
+        .hero-description {
+            max-width: 650px;
+            margin: auto;
+            color: #555;
+            font-size: 18px;
+        }
+
+        .hero-buttons {
+            margin-top: 40px;
+
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 14px 24px;
+            border-radius: 10px;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            transition: 0.25s;
+            cursor: pointer;
+        }
+
+        .btn-black {
+            background: #111;
+            color: white;
+        }
+
+        .btn-black:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .btn-white {
+            background: white;
+            border: 1px solid #ddd;
+        }
+
+        .btn-white:hover {
+            border-color: #111;
+        }
+
+        /* =========================
+           GENERAL
+        ========================= */
+
+        .section {
+            max-width: 1400px;
+            margin: auto;
+            padding: 100px 30px;
+        }
+
+        .section-title {
+            margin-bottom: 45px;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            color: #777;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(35px, 5vw, 60px);
+            letter-spacing: -3px;
+            line-height: 1;
+        }
+
+        .section-title p {
+            margin-top: 18px;
+            color: #666;
+            max-width: 650px;
+        }
+
+        /* =========================
+           FEATURE BOXES
+        ========================= */
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .feature {
+            border: 1px solid #e5e5e5;
+            border-radius: 18px;
+            padding: 35px;
+            background: #fff;
+            transition: 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            border-color: #111;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.07);
+        }
+
+        .feature-number {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 25px;
+        }
+
+        .feature h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .feature p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* =========================
+           PRODUCTS
+        ========================= */
+
+        #urunler {
+            background: #fafafa;
+            max-width: none;
+        }
+
+        .products-container {
+            max-width: 1400px;
+            margin: auto;
+            padding: 0 30px;
+        }
+
+        .category-section {
+            margin-bottom: 75px;
+        }
+
+        .category-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .category-heading h3 {
+            font-size: 28px;
+            letter-spacing: -1px;
+        }
+
+        .category-line {
+            height: 1px;
+            background: #ddd;
+            flex: 1;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: 0.3s;
+            scroll-margin-top: 110px;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            border-color: #111;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 230px;
+            background: #f3f3f3;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-placeholder {
+            color: #999;
+            font-size: 13px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .product-description {
+            font-size: 13px;
+            color: #777;
+            min-height: 40px;
+            margin-bottom: 18px;
+        }
+
+        .product-button {
+            width: 100%;
+            border: 0;
+            background: #111;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .product-button:hover {
+            background: #333;
+        }
+
+        .empty-products {
+            text-align: center;
+            padding: 70px 20px;
+            color: #777;
+        }
+
+        /* =========================
+           SERVICE
+        ========================= */
+
+        .service-section {
+            background: #111;
+            color: white;
+            max-width: none;
+        }
+
+        .service-inner {
+            max-width: 1400px;
+            margin: auto;
+            padding: 100px 30px;
+        }
+
+        .service-inner .section-label {
+            color: #999;
+        }
+
+        .service-inner .section-title p {
+            color: #aaa;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 45px;
+        }
+
+        .service-card {
+            border: 1px solid #333;
+            padding: 28px;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            background: #1b1b1b;
+            transform: translateY(-4px);
+        }
+
+        .service-card span {
+            color: #888;
+            font-size: 12px;
+        }
+
+        .service-card h3 {
+            margin: 18px 0 10px;
+            font-size: 19px;
+        }
+
+        .service-card p {
+            color: #aaa;
+            font-size: 13px;
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact-box {
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            padding: 60px;
+            text-align: center;
+            background: #fafafa;
+        }
+
+        .contact-box h2 {
+            font-size: clamp(35px, 5vw, 60px);
+            letter-spacing: -3px;
+            margin-bottom: 20px;
+        }
+
+        .contact-box p {
+            color: #666;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            border-top: 1px solid #e5e5e5;
+            padding: 35px 30px;
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        footer p {
+            color: #777;
+            font-size: 13px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1100px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .service-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 800px) {
+            .header-inner {
+                padding: 15px 20px;
+                flex-direction: column;
+            }
+
+            nav {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .hero {
+                min-height: 560px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-box {
+                padding: 40px 25px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .hero {
+                padding: 80px 20px;
+            }
+
+            .hero h1 {
+                letter-spacing: -4px;
+            }
+
+            .section,
+            .products-container,
+            .service-inner {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-heading {
+                align-items: flex-start;
+            }
+
+            .category-line {
+                display: none;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+    <div class="header-inner">
+
+        <a href="#anasayfa" class="logo">
+            PRIME<span>-TECH</span>
+        </a>
+
+        <nav>
+            <a href="#anasayfa">Ana Sayfa</a>
+            <a href="#telefonlar">Telefonlar</a>
+            <a href="#aksesuarlar">Aksesuarlar</a>
+            <a href="#diger-urunler">Diğer Ürünler</a>
+            <a href="#teknik-servis">Teknik Servis</a>
+            <a href="#iletisim">İletişim</a>
+            <a href="admin.html" class="admin-link">Admin</a>
+        </nav>
+
+    </div>
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="anasayfa">
+
+    <div class="hero-content">
+
+        <div class="hero-small">
+            PRIME-TECH
+        </div>
+
+        <h1>
+            KALİTENİN
+            <span>TEK ADRESİ</span>
+        </h1>
+
+        <p class="hero-description">
+            Telefon, aksesuar, teknoloji ürünleri ve profesyonel
+            teknik servis çözümleri.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#urunler" class="btn btn-black">
+                Ürünleri İncele
+            </a>
+
+            <a href="#teknik-servis" class="btn btn-white">
+                Teknik Servis
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FEATURES
+========================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <div class="section-label">
+            Prime-Tech
+        </div>
+
+        <h2>
+            Teknolojiye<br>
+            farklı bakış.
+        </h2>
+
+        <p>
+            İhtiyacınız olan teknoloji ürünlerini ve teknik servis
+            hizmetlerini tek çatı altında bulabilirsiniz.
+        </p>
+
+    </div>
+
+
+    <div class="features">
+
+        <div class="feature">
+            <div class="feature-number">01</div>
+
+            <h3>Telefonlar</h3>
+
+            <p>
+                Güncel telefon modellerini inceleyin ve
+                ürün hakkında doğrudan bilgi alın.
+            </p>
+        </div>
+
+
+        <div class="feature">
+            <div class="feature-number">02</div>
+
+            <h3>Aksesuarlar</h3>
+
+            <p>
+                Telefon ve teknoloji kullanımınızı
+                tamamlayan aksesuarları keşfedin.
+            </p>
+        </div>
+
+
+        <div class="feature">
+            <div class="feature-number">03</div>
+
+            <h3>Teknik Servis</h3>
+
+            <p>
+                Telefon ve teknoloji ürünleriniz için
+                profesyonel teknik servis desteği.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PRODUCTS
+========================= -->
+
+<section id="urunler">
+
+    <div class="products-container">
+
+        <div class="section-title" style="padding-top:100px;">
+
+            <div class="section-label">
+                Ürünler
+            </div>
+
+            <h2>
+                Koleksiyonu<br>
+                keşfedin.
+            </h2>
+
+            <p>
+                Ürünler admin panelinden yönetilir.
+                İsim, kategori, açıklama ve görseller güncellenebilir.
+            </p>
+
+        </div>
+
+
+        <div id="productsContainer">
+
+            <div class="empty-products">
+                Ürünler yükleniyor...
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TECHNICAL SERVICE
+========================= -->
+
+<section class="service-section" id="teknik-servis">
+
+    <div class="service-inner">
+
+        <div class="section-title">
+
+            <div class="section-label">
+                Teknik Servis
+            </div>
+
+            <h2>
+                Cihazınız için<br>
+                profesyonel destek.
+            </h2>
+
+            <p>
+                Telefon ve teknoloji ürünlerinizde oluşan
+                çeşitli sorunlar için teknik servis desteği.
+            </p>
+
+        </div>
+
+
+        <div class="service-grid">
+
+            <div class="service-card">
+                <span>01</span>
+
+                <h3>Ekran Değişimi</h3>
+
+                <p>
+                    Kırık, çatlak veya görüntü problemi
+                    yaşayan ekranlar için servis.
+                </p>
+            </div>
+
+
+            <div class="service-card">
+                <span>02</span>
+
+                <h3>Batarya</h3>
+
+                <p>
+                    Hızlı tükenen veya performansı düşen
+                    bataryalar için değişim işlemleri.
+                </p>
+            </div>
+
+
+            <div class="service-card">
+                <span>03</span>
+
+                <h3>Şarj Problemleri</h3>
+
+                <p>
+                    Şarj soketi ve şarj problemlerine
+                    yönelik teknik servis.
+                </p>
+            </div>
+
+
+            <div class="service-card">
+                <span>04</span>
+
+                <h3>Kamera</h3>
+
+                <p>
+                    Kamera görüntüsü ve kamera donanımı
+                    ile ilgili teknik problemler.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section class="section" id="iletisim">
+
+    <div class="contact-box">
+
+        <div class="section-label">
+            İletişim
+        </div>
+
+        <h2>
+            Bir ürün mü arıyorsunuz?
+        </h2>
+
+        <p>
+            Aradığınız ürünü bulamadınız mı?
+            Bize WhatsApp üzerinden ulaşın.
+            İhtiyacınız olan ürün hakkında bilgi verelim.
+        </p>
+
+        <div class="hero-buttons">
+
+           <a
+    href="https://wa.me/905350745203?text=Merhaba%20bilgi%20almak%20istiyorum"
+    target="_blank"
+    class="btn btn-black"
+>
+    WhatsApp'tan Ulaş
+</a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-inner">
+
+        <strong>PRIME-TECH</strong>
+
+        <p>
+            © 2026 Prime-Tech. Tüm hakları saklıdır.
+        </p>
+
+        <p>
+            KALİTENİN TEK ADRESİ
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+    /*
+        ==========================================
+        WHATSAPP AYARI
+        ==========================================
+
+        BURAYA KENDİ WHATSAPP NUMARANI YAZACAKSIN.
+
+        Örnek:
+        905321234567
+
+        Başına + koyma.
+    */
+
+    const WHATSAPP_NUMBER = "905350745203";
+
+
+    /*
+        ==========================================
+        ÜRÜNLERİ API'DEN ÇEK
+        ==========================================
+    */
+
+    async function loadProducts() {
+
+        const container = document.getElementById("productsContainer");
+
+        try {
+
+            const response = await fetch("/api/products");
+
+            if (!response.ok) {
+                throw new Error("Ürünler alınamadı.");
+            }
+
+            const products = await response.json();
+
+            renderProducts(products);
+
+        } catch (error) {
+
+            console.error(error);
+
+            container.innerHTML = `
+                <div class="empty-products">
+                    Ürünler yüklenirken bir sorun oluştu.
+                </div>
+            `;
+
+        }
+
+    }
+
+
+    /*
+        ==========================================
+        ÜRÜNLERİ KATEGORİLERE AYIR
+        ==========================================
+    */
+
+    function renderProducts(products) {
+
+        const container = document.getElementById("productsContainer");
+
+        container.innerHTML = "";
+
+        if (!products || products.length === 0) {
+
+            container.innerHTML = `
+                <div class="empty-products">
+                    Henüz ürün eklenmemiş.
+                </div>
+            `;
+
+            return;
+        }
+
+
+        const categories = {};
+
+
+        products.forEach(product => {
+
+            const category =
+                product.category &&
+                product.category.trim()
+                    ? product.category.trim()
+                    : "Diğer Ürünler";
+
+
+            if (!categories[category]) {
+                categories[category] = [];
+            }
+
+            categories[category].push(product);
+
+        });
+
+
+        Object.keys(categories).forEach(category => {
+
+            const section = document.createElement("div");
+
+            section.className = "category-section";
+
+
+            const heading = document.createElement("div");
+
+            heading.className = "category-heading";
+
+
+            const title = document.createElement("h3");
+
+            title.textContent = category;
+
+
+            const line = document.createElement("div");
+
+            line.className = "category-line";
+
+
+            heading.appendChild(title);
+            heading.appendChild(line);
+
+
+            const grid = document.createElement("div");
+
+            grid.className = "product-grid";
+
+
+            categories[category].forEach(product => {
+
+                const card = createProductCard(product);
+
+                grid.appendChild(card);
+
+            });
+
+
+            section.appendChild(heading);
+            section.appendChild(grid);
+
+            container.appendChild(section);
+
+        });
+
+    }
+
+
+    /*
+        ==========================================
+        ÜRÜN KARTI
+        ==========================================
+    */
+
+    function createProductCard(product) {
+
+        const card = document.createElement("article");
+
+        card.className = "product-card";
+
+        card.id = "urun-" + product.id;
+
+
+        const imageArea = document.createElement("div");
+
+        imageArea.className = "product-image";
+
+
+        if (product.image && product.image.trim() !== "") {
+
+            const img = document.createElement("img");
+
+            img.src = product.image;
+
+            img.alt = product.name || "Prime-Tech ürünü";
+
+
+            img.onerror = function() {
+
+                imageArea.innerHTML = `
+                    <div class="image-placeholder">
+                        Ürün görseli bulunamadı
+                    </div>
+                `;
+
+            };
+
+
+            imageArea.appendChild(img);
+
+        } else {
+
+            imageArea.innerHTML = `
+                <div class="image-placeholder">
+                    Ürün görseli eklenmemiş
+                </div>
+            `;
+
+        }
+
+
+        const info = document.createElement("div");
+
+        info.className = "product-info";
+
+
+        const title = document.createElement("h4");
+
+        title.textContent =
+            product.name || "İsimsiz Ürün";
+
+
+        const description = document.createElement("div");
+
+        description.className = "product-description";
+
+        description.textContent =
+            product.description || "Ürün hakkında bilgi almak için bizimle iletişime geçebilirsiniz.";
+
+
+        const button = document.createElement("button");
+
+        button.className = "product-button";
+
+        button.textContent = "WhatsApp'tan Bilgi Al";
+
+
+        button.onclick = function() {
+
+            contactWhatsApp(product);
+
+        };
+
+
+        info.appendChild(title);
+
+        info.appendChild(description);
+
+        info.appendChild(button);
+
+
+        card.appendChild(imageArea);
+
+        card.appendChild(info);
+
+
+        return card;
+
+    }
+
+
+    /*
+        ==========================================
+        WHATSAPP MESAJI
+        ==========================================
+    */
+
+    function contactWhatsApp(product) {
+
+        const productName =
+            product.name || "Ürün";
+
+
+        const productLink =
+            window.location.origin +
+            window.location.pathname +
+            "#urun-" +
+            product.id;
+
+
+        const message =
+            `Merhaba Prime-Tech, "${productName}" ürünü hakkında bilgi almak istiyorum.\n\nÜrün bağlantısı: ${productLink}`;
+
+
+        const url =
+            `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+
+        window.open(url, "_blank");
+
+    }
+
+
+    /*
+        ==========================================
+        SAYFA AÇILDIĞINDA ÜRÜNLERİ GETİR
+        ==========================================
+    */
+
+    loadProducts();
+
+</script>
+
+</body>
+</html>

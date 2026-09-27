@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prime-Tech | Canlı Destek</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 85%;
+            margin: 50px auto;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .status {
+            color: #ccc;
+            margin-bottom: 35px;
+            font-size: 20px;
+        }
+
+        .chat {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        #messages {
+            height: 550px;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .message {
+            padding: 18px 22px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .customer {
+            background: #222;
+            text-align: left;
+        }
+
+        .support {
+            background: #fff;
+            color: #000;
+            text-align: right;
+        }
+
+        .time {
+            display: block;
+            font-size: 13px;
+            color: #888;
+            margin-top: 8px;
+        }
+
+        .input-area {
+            display: flex;
+            border-top: 1px solid #333;
+        }
+
+        #messageInput {
+            flex: 1;
+            padding: 20px;
+            background: #111;
+            color: #fff;
+            border: none;
+            outline: none;
+            font-size: 18px;
+        }
+
+        button {
+            width: 140px;
+            border: none;
+            background: #fff;
+            color: #000;
+            font-weight: bold;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #ddd;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Canlı Destek</h1>
+
+        <div class="status">
+            ● Destek personeli olarak bağılınız
+        </div>
+
+        <div class="chat">
+
+            <div id="messages"></div>
+
+            <div class="input-area">
+
+                <input
+                    type="text"
+                    id="messageInput"
+                    placeholder="Müşteriye mesaj yazın..."
+                >
+
+                <button onclick="sendMessage()">
+                    Gönder
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Socket.IO -->
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+
+        const socket = io();
+
+        const messages = document.getElementById("messages");
+
+        const input = document.getElementById("messageInput");
+
+
+        // MÜŞTERİDEN GELEN MESAJ
+
+        socket.on("support-message", function(data) {
+
+            console.log("Müşteriden mesaj geldi:", data);
+
+            const message = document.createElement("div");
+
+            message.className = "message customer";
+
+            message.innerHTML =
+                "<strong>Müşteri:</strong> " +
+                data.text +
+                '<span class="time">' +
+                data.time +
+                "</span>";
+
+            messages.appendChild(message);
+
+            messages.scrollTop = messages.scrollHeight;
+
+        });
+
+
+        // DESTEK PERSONELİ MESAJ GÖNDERİYOR
+
+        function sendMessage() {
+
+            const text = input.value.trim();
+
+            if (text === "") {
+                return;
+            }
+
+            socket.emit("support-message", {
+                text: text
+            });
+
+            const message = document.createElement("div");
+
+            message.className = "message support";
+
+            message.innerHTML =
+                "<strong>Siz:</strong> " +
+                text +
+                '<span class="time">' +
+                new Date().toLocaleTimeString("tr-TR") +
+                "</span>";
+
+            messages.appendChild(message);
+
+            input.value = "";
+
+            messages.scrollTop = messages.scrollHeight;
+
+        }
+
+
+        // ENTER İLE GÖNDER
+
+        input.addEventListener("keydown", function(event) {
+
+            if (event.key === "Enter") {
+
+                sendMessage();
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>

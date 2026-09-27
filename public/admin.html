@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prime-Tech | Admin</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f5f5;
+            color: #111;
+        }
+
+        /* LOGIN */
+
+        .login-screen {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 420px;
+            background: white;
+            padding: 45px;
+            border: 1px solid #ddd;
+            box-shadow: 0 20px 50px rgba(0,0,0,.08);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .logo span {
+            font-weight: 400;
+        }
+
+        .login-title {
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 30px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid #ddd;
+            padding: 14px;
+            margin-top: 7px;
+            margin-bottom: 18px;
+            font-size: 14px;
+            outline: none;
+            background: white;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #111;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        label {
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+        }
+
+        .black-button {
+            width: 100%;
+            background: #111;
+            color: white;
+            padding: 15px;
+            font-weight: 700;
+        }
+
+        .black-button:hover {
+            background: #333;
+        }
+
+        .error {
+            color: #d00;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+
+        /* ADMIN */
+
+        .admin {
+            display: none;
+            min-height: 100vh;
+        }
+
+        header {
+            height: 75px;
+            background: #111;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 6%;
+        }
+
+        .admin-logo {
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .admin-logo span {
+            font-weight: 400;
+        }
+
+        .logout {
+            background: white;
+            color: #111;
+            padding: 10px 18px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 45px 20px;
+        }
+
+        .page-title {
+            margin-bottom: 35px;
+        }
+
+        .page-title h1 {
+            font-size: 38px;
+            letter-spacing: -1px;
+        }
+
+        .page-title p {
+            color: #777;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        /* FORM */
+
+        .form-box {
+            background: white;
+            padding: 30px;
+            border: 1px solid #ddd;
+            margin-bottom: 45px;
+        }
+
+        .form-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .save-button {
+            background: #111;
+            color: white;
+            padding: 15px 25px;
+            font-weight: 700;
+        }
+
+        .cancel-button {
+            background: #eee;
+            color: #111;
+            padding: 15px 25px;
+            font-weight: 700;
+            display: none;
+        }
+
+        /* PRODUCTS */
+
+        .products-title {
+            font-size: 25px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .product {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 15px;
+        }
+
+        .product-image {
+            height: 180px;
+            background: #f4f4f4;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .no-image {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .product-name {
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .product-category {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .edit-button {
+            flex: 1;
+            background: #111;
+            color: white;
+            padding: 11px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .delete-button {
+            background: #eee;
+            color: #111;
+            padding: 11px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .delete-button:hover {
+            background: #ddd;
+        }
+
+        .status {
+            margin-top: 15px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* MOBİL */
+
+        @media(max-width: 800px) {
+
+            .products {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .two-columns {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+        }
+
+        @media(max-width: 550px) {
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .login-box {
+                padding: 30px 20px;
+            }
+
+            main {
+                padding: 30px 15px;
+            }
+
+            .form-box {
+                padding: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- GİRİŞ -->
+
+<div class="login-screen" id="loginScreen">
+
+    <div class="login-box">
+
+        <div class="logo">
+            Prime<span>-Tech</span>
+        </div>
+
+        <div class="login-title">
+            Yönetim Paneli
+        </div>
+
+
+        <label>
+            Admin Şifresi
+        </label>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Şifrenizi girin"
+        >
+
+
+        <button
+            class="black-button"
+            onclick="login()">
+
+            ADMİN PANELİNE GİR
+
+        </button>
+
+
+        <div
+            class="error"
+            id="loginError">
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ADMIN PANELİ -->
+
+<div class="admin" id="adminPanel">
+
+
+<header>
+
+    <div class="admin-logo">
+        Prime<span>-Tech</span> Admin
+    </div>
+
+    <button
+        class="logout"
+        onclick="logout()">
+
+        ÇIKIŞ YAP
+
+    </button>
+
+</header>
+
+
+
+<main>
+
+
+    <div class="page-title">
+
+        <h1>
+            Ürün Yönetimi
+        </h1>
+
+        <p>
+            Buradan müşterilerin gördüğü ürünleri yönetebilirsin.
+        </p>
+
+    </div>
+
+
+
+    <!-- ÜRÜN FORMU -->
+
+    <div class="form-box">
+
+        <div class="form-title" id="formTitle">
+            Yeni Ürün Ekle
+        </div>
+
+
+        <div class="two-columns">
+
+
+            <div>
+
+                <label>
+                    Ürün Adı
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Örn: iPhone 15"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Kategori
+                </label>
+
+                <input
+                    type="text"
+                    id="category"
+                    placeholder="Örn: Telefonlar"
+                >
+
+            </div>
+
+
+        </div>
+
+
+
+        <label>
+            Ürün Açıklaması
+        </label>
+
+        <textarea
+            id="description"
+            placeholder="Ürün hakkında kısa bilgi">
+        </textarea>
+
+
+
+        <label>
+            Fotoğraf
+        </label>
+
+        <input
+            type="text"
+            id="image"
+            placeholder="Örn: images/iphone15.jpg"
+        >
+
+
+        <div class="form-actions">
+
+            <button
+                class="save-button"
+                onclick="saveProduct()"
+                id="saveButton">
+
+                ÜRÜNÜ KAYDET
+
+            </button>
+
+
+            <button
+                class="cancel-button"
+                onclick="cancelEdit()"
+                id="cancelButton">
+
+                İPTAL
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="status"
+            id="status">
+        </div>
+
+    </div>
+
+
+
+    <!-- ÜRÜNLER -->
+
+    <div class="products-title">
+        Mevcut Ürünler
+    </div>
+
+
+    <div
+        class="products"
+        id="products">
+
+    </div>
+
+
+</main>
+
+</div>
+
+
+
+<script>
+
+let token = null;
+
+let editingId = null;
+
+
+// --------------------------------------------------
+// GİRİŞ
+// --------------------------------------------------
+
+async function login() {
+
+    const password =
+        document.getElementById("password").value;
+
+    const error =
+        document.getElementById("loginError");
+
+
+    error.textContent = "";
+
+
+    try {
+
+        const response =
+            await fetch("/api/admin/login", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    password: password
+                })
+
+            });
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            error.textContent =
+                data.error || "Giriş başarısız.";
+
+            return;
+        }
+
+
+        token = data.token;
+
+
+        document.getElementById(
+            "loginScreen"
+        ).style.display = "none";
+
+
+        document.getElementById(
+            "adminPanel"
+        ).style.display = "block";
+
+
+        loadProducts();
+
+
+    } catch (error) {
+
+        error.textContent =
+            "Sunucuya bağlanılamadı.";
+
+    }
+
+}
+
+
+
+// --------------------------------------------------
+// ÜRÜNLERİ GETİR
+// --------------------------------------------------
+
+async function loadProducts() {
+
+    const response =
+        await fetch("/api/admin/products", {
+
+            headers: {
+                "Authorization": token
+            }
+
+        });
+
+
+    const products =
+        await response.json();
+
+
+    const container =
+        document.getElementById("products");
+
+
+    container.innerHTML = "";
+
+
+    products.forEach(product => {
+
+
+        const card =
+            document.createElement("div");
+
+
+        card.className =
+            "product";
+
+
+        let imageHTML = "";
+
+
+        if (product.image) {
+
+            imageHTML = `
+                <img
+                    src="${product.image}"
+                    alt="${product.name}">
+            `;
+
+        } else {
+
+            imageHTML = `
+                <div class="no-image">
+                    FOTOĞRAF YOK
+                </div>
+            `;
+
+        }
+
+
+        card.innerHTML = `
+
+            <div class="product-image">
+                ${imageHTML}
+            </div>
+
+            <div class="product-name">
+                ${product.name}
+            </div>
+
+            <div class="product-category">
+                ${product.category}
+            </div>
+
+            <div class="product-actions">
+
+                <button
+                    class="edit-button"
+                    onclick="editProduct(${product.id})">
+
+                    DÜZENLE
+
+                </button>
+
+                <button
+                    class="delete-button"
+                    onclick="deleteProduct(${product.id})">
+
+                    SİL
+
+                </button>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+
+// --------------------------------------------------
+// ÜRÜN KAYDET / GÜNCELLE
+// --------------------------------------------------
+
+async function saveProduct() {
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const category =
+        document.getElementById("category").value.trim();
+
+    const description =
+        document.getElementById("description").value.trim();
+
+    const image =
+        document.getElementById("image").value.trim();
+
+
+    if (!name || !category) {
+
+        alert(
+            "Ürün adı ve kategori zorunludur."
+        );
+
+        return;
+    }
+
+
+    const data = {
+
+        name: name,
+
+        category: category,
+
+        description: description,
+
+        image: image
+
+    };
+
+
+    let url =
+        "/api/admin/products";
+
+
+    let method =
+        "POST";
+
+
+    if (editingId) {
+
+        url =
+            "/api/admin/products/" +
+            editingId;
+
+        method =
+            "PUT";
+
+    }
+
+
+    const response =
+        await fetch(url, {
+
+            method: method,
+
+            headers: {
+
+                "Content-Type":
+                    "application/json",
+
+                "Authorization":
+                    token
+
+            },
+
+            body:
+                JSON.stringify(data)
+
+        });
+
+
+    const result =
+        await response.json();
+
+
+    if (!response.ok) {
+
+        alert(
+            result.error ||
+            "İşlem başarısız."
+        );
+
+        return;
+    }
+
+
+    document.getElementById(
+        "status"
+    ).textContent =
+        editingId
+            ? "Ürün güncellendi."
+            : "Ürün eklendi.";
+
+
+    clearForm();
+
+    loadProducts();
+
+}
+
+
+
+// --------------------------------------------------
+// DÜZENLE
+// --------------------------------------------------
+
+async function editProduct(id) {
+
+    const response =
+        await fetch(
+            "/api/admin/products",
+            {
+                headers: {
+                    "Authorization": token
+                }
+            }
+        );
+
+
+    const products =
+        await response.json();
+
+
+    const product =
+        products.find(
+            item => item.id === id
+        );
+
+
+    if (!product) return;
+
+
+    editingId = id;
+
+
+    document.getElementById(
+        "name"
+    ).value = product.name;
+
+
+    document.getElementById(
+        "category"
+    ).value = product.category;
+
+
+    document.getElementById(
+        "description"
+    ).value = product.description;
+
+
+    document.getElementById(
+        "image"
+    ).value = product.image;
+
+
+    document.getElementById(
+        "formTitle"
+    ).textContent =
+        "Ürünü Düzenle";
+
+
+    document.getElementById(
+        "saveButton"
+    ).textContent =
+        "DEĞİŞİKLİKLERİ KAYDET";
+
+
+    document.getElementById(
+        "cancelButton"
+    ).style.display =
+        "block";
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+
+// --------------------------------------------------
+// ÜRÜN SİL
+// --------------------------------------------------
+
+async function deleteProduct(id) {
+
+    const confirmDelete =
+        confirm(
+            "Bu ürünü silmek istediğine emin misin?"
+        );
+
+
+    if (!confirmDelete) return;
+
+
+    const response =
+        await fetch(
+            "/api/admin/products/" + id,
+            {
+
+                method: "DELETE",
+
+                headers: {
+                    "Authorization": token
+                }
+
+            }
+        );
+
+
+    if (!response.ok) {
+
+        alert("Ürün silinemedi.");
+
+        return;
+    }
+
+
+    loadProducts();
+
+}
+
+
+
+// --------------------------------------------------
+// FORM TEMİZLE
+// --------------------------------------------------
+
+function clearForm() {
+
+    editingId = null;
+
+
+    document.getElementById(
+        "name"
+    ).value = "";
+
+
+    document.getElementById(
+        "category"
+    ).value = "";
+
+
+    document.getElementById(
+        "description"
+    ).value = "";
+
+
+    document.getElementById(
+        "image"
+    ).value = "";
+
+
+    document.getElementById(
+        "formTitle"
+    ).textContent =
+        "Yeni Ürün Ekle";
+
+
+    document.getElementById(
+        "saveButton"
+    ).textContent =
+        "ÜRÜNÜ KAYDET";
+
+
+    document.getElementById(
+        "cancelButton"
+    ).style.display =
+        "none";
+
+}
+
+
+
+// --------------------------------------------------
+// İPTAL
+// --------------------------------------------------
+
+function cancelEdit() {
+
+    clearForm();
+
+}
+
+
+
+// --------------------------------------------------
+// ÇIKIŞ
+// --------------------------------------------------
+
+function logout() {
+
+    token = null;
+
+    document.getElementById(
+        "adminPanel"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "loginScreen"
+    ).style.display =
+        "flex";
+
+
+    document.getElementById(
+        "password"
+    ).value = "";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
