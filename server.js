@@ -4,7 +4,7 @@ const path = require("path");
 const crypto = require("crypto");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const DATA_FILE = path.join(__dirname, "products.json");
 
@@ -308,7 +308,7 @@ app.delete("/api/admin/products/:id", checkAdmin, (req, res) => {
 // SUNUCU
 // --------------------------------------------------
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
 
     console.log("Prime-Tech sunucusu çalışıyor.");
 
