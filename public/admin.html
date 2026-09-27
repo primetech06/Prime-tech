@@ -484,7 +484,9 @@
             id="image"
             placeholder="Örn: images/iphone15.jpg"
         >
-
+<button type="button" onclick="openCloudinaryUpload()">
+    📷 Fotoğraf Seç
+</button>
 
         <div class="form-actions">
 
@@ -1053,7 +1055,39 @@ function logout() {
 
 </script>
 
+<script src="https://upload-widget.cloudinary.com/global/all.js"></script>
 
+<script>
+const CLOUDINARY_CLOUD_NAME = "l2oo5voa";
+const CLOUDINARY_UPLOAD_PRESET = "prime_tech";
+
+function openCloudinaryUpload() {
+    cloudinary.openUploadWidget(
+        {
+            cloudName: CLOUDINARY_CLOUD_NAME,
+            uploadPreset: CLOUDINARY_UPLOAD_PRESET,
+            sources: ["local", "camera"],
+            multiple: false,
+            resourceType: "image",
+            cropping: true,
+            maxFileSize: 5000000,
+            clientAllowedFormats: ["jpg", "jpeg", "png", "webp"],
+            showAdvancedOptions: false,
+            folder: "prime-tech"
+        },
+        function(error, result) {
+            if (!error && result && result.event === "success") {
+                const imageInput = document.getElementById("image");
+                if (imageInput) {
+                    imageInput.value = result.info.secure_url;
+                }
+
+                alert("Fotoğraf başarıyla yüklendi!");
+            }
+        }
+    );
+}
+</script>
 </body>
 
 </html>
