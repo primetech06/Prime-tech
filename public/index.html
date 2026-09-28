@@ -1152,7 +1152,7 @@
 
 const stock = document.createElement("div");
 stock.className = "product-stock";
-stock.textContent = "Stok: " + (product.stock ?? 0) + " adet";
+stock.textContent = product.stockStatus || "Stok Yok";
 
         const button = document.createElement("button");
 

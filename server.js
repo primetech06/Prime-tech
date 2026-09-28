@@ -171,7 +171,7 @@ app.post("/api/admin/products", checkAdmin, (req, res) => {
         category,
         description,
         image,
-        stock
+        stockStatus
     } = req.body;
 
 
@@ -199,7 +199,7 @@ app.post("/api/admin/products", checkAdmin, (req, res) => {
 
         image: image || "",
 
-        stock: Number(stock) || 0
+        stockStatus: stockStatus
 
     };
 
@@ -246,7 +246,7 @@ app.put("/api/admin/products/:id", checkAdmin, (req, res) => {
         category,
         description,
         image,
-        stock
+        stockStatus: stockStatus 
     } = req.body;
 
 
@@ -258,7 +258,7 @@ app.put("/api/admin/products/:id", checkAdmin, (req, res) => {
 
     product.image = image || "";
 
-    product.stock = Number(stock) || 0;
+    product.stockStatus = stockStatus;
 
     saveProducts(products);
 

@@ -510,17 +510,14 @@
 </button>
 
 <label>
-    Stok Sayısı
+    Stok Durumu
 </label>
 
-<input
-    type="number"
-    id="stock"
-    min="0"
-    value="0"
-    placeholder="Örn: 10"
->
-
+<select id="stock">
+    <option value="Stokta Var">Stokta Var</option>
+    <option value="Stok Azaldı">Stok Azaldı</option>
+    <option value="Stok Yok">Stok Yok</option>
+</select>
         <div class="form-actions">
 
             <button
@@ -779,7 +776,7 @@ async function saveProduct() {
         document.getElementById("image").value.trim();
 
     const stock =
-        Number(document.getElementById("stock").value) || 0;
+        document.getElementById("stock").value;
 
     if (!name || !category) {
 
@@ -801,7 +798,7 @@ async function saveProduct() {
 
         image: image,
 
-        stock: stock
+        stockStatus: stock
 
     };
 
