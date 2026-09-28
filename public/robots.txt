@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://prime-tech-bwjy.onrender.com/sitemap.xml
