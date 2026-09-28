@@ -37,6 +37,19 @@
             letter-spacing: -1px;
         }
 
+        .brand-with-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand-antenna {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            flex: 0 0 auto;
+        }
+
         header a {
             color: #111;
             text-decoration: none;
@@ -189,7 +202,7 @@
 <body>
 
 <header>
-    <div class="logo">PRIME-TECH</div>
+    <div class="logo"><span class="brand-with-icon"><img class="brand-antenna" src="/prime-tech-favicon.ico" alt="" aria-hidden="true">PRIME-TECH</span></div>
 
     <a href="/">Ana Sayfaya Dön</a>
 </header>
