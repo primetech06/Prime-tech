@@ -1150,6 +1150,9 @@
         description.textContent =
             product.description || "Ürün hakkında bilgi almak için bizimle iletişime geçebilirsiniz.";
 
+const stock = document.createElement("div");
+stock.className = "product-stock";
+stock.textContent = "Stok: " + (product.stock ?? 0) + " adet";
 
         const button = document.createElement("button");
 
@@ -1168,6 +1171,8 @@
         info.appendChild(title);
 
         info.appendChild(description);
+
+info.appendChild(stock);
 
         info.appendChild(button);
 
